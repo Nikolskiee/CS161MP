@@ -15,7 +15,7 @@ public class CollisionHandlerBall : MonoBehaviour
 
         if(collision.transform.tag == "floor") {
             int index = Random.Range(0, floors.Count);
-            int altitude = Random.Range(-3,3);
+            int altitude = Random.Range(-2,2);
             GameObject floor = Instantiate(floors[index], collision.transform.position + new Vector3(0f, 0f + altitude, 60f), Quaternion.identity);
             active_floors.Add(floor);
 
