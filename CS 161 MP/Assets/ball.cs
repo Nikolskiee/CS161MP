@@ -18,11 +18,13 @@ public class ball : MonoBehaviour
     private bool goLeft = false;
     private bool goRight = false;
 
+    public Rigidbody rb;
+
 
     // Start is called before the first frame update
     void Start()
     {
-
+        rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -60,8 +62,8 @@ public class ball : MonoBehaviour
         }
 
         if(goLeft) {
-            transform.position += sideLeft;
             col -= 1;
+            transform.position += sideLeft;
             goLeft = false;
         }
 
@@ -74,7 +76,7 @@ public class ball : MonoBehaviour
 
         if(goJump) {
             onAir = true;
-            transform.position += jump;
+            rb.velocity = jump;
             goJump = false;
         }
 

@@ -597,10 +597,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcddf6847579c9d4bbfff9190083400a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jump: {x: 0, y: 5, z: 0}
+  jump: {x: 0, y: 7.5, z: 0}
   forwardSpeed: {x: 0, y: 0, z: 0.3}
   sideRight: {x: 5, y: 0, z: 0}
   sideLeft: {x: -5, y: 0, z: 0}
+  rb: {fileID: 0}
 --- !u!114 &1685085236
 MonoBehaviour:
   m_ObjectHideFlags: 0
