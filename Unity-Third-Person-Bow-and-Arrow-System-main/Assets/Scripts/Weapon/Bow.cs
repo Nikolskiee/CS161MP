@@ -95,6 +95,8 @@ public class Bow : MonoBehaviour
         this.transform.parent = bowSettings.UnEquipParent;
     }
 
+
+    
     public void ShowCrosshair(Vector3 crosshairPos)
     {
         if (!currentCrossHair)

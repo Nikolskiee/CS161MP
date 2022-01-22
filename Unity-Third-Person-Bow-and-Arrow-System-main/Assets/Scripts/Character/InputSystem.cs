@@ -52,19 +52,26 @@ public class InputSystem : MonoBehaviour
     Animator playerAnim;
     CharacterController cc;
 
+    public Countdown countdownScript;
+
     // Start is called before the first frame update
     void Start()
     {
+
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
         moveScript = GetComponent<Movement>();
         camCenter = Camera.main.transform.parent;
         mainCam = Camera.main.transform;
         playerAnim = GetComponent<Animator>();
         cc = GetComponent<CharacterController>();
+        countdownScript.Start();
     }
 
     // Update is called once per frame
     void Update()
     {
+
         if (Input.GetAxis(input.forwardInput) != 0 || Input.GetAxis(input.strafeInput) != 0)
             RotateToCamView();
 
@@ -95,7 +102,6 @@ public class InputSystem : MonoBehaviour
 
             if (Input.GetButtonUp(input.fire))
             {
-
                 moveScript.CharacterFireArrow();
                 if (hitDetected)
                 {
@@ -144,7 +150,8 @@ public class InputSystem : MonoBehaviour
     {
         Vector3 camPosition = mainCam.position;
         Vector3 dir = mainCam.forward;
-
+        bowScript.ShowCrosshair(hit.point);
+        
         ray = new Ray(camPosition, dir);
         if(Physics.Raycast(ray, out hit, 500f, aimLayers))
         {

@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class Arrow : MonoBehaviour
 {
+    [SerializeField] Camera cam;
     Rigidbody rb;
     BoxCollider bx;
+    Target target;
     bool disableRotation;
     public float destroyTime = 10f;
     AudioSource arrowAudio;
@@ -15,6 +17,7 @@ public class Arrow : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         bx = GetComponent<BoxCollider>();
+        target = GetComponent<Target>();
         arrowAudio = GetComponent<AudioSource>();
 
         Destroy(this.gameObject, destroyTime);
@@ -27,23 +30,20 @@ public class Arrow : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if((collision.gameObject.tag != "Player") && (collision.gameObject.tag != "Target"))
+        if((collision.gameObject.tag != "Player"))
         {
             arrowAudio.Play();
             disableRotation = true;
             rb.isKinematic = true;
             bx.isTrigger = true;
-        }
-        
-        /*
-        if(collision.gameObject.tag == "Target")
-        {
-            Target target = collision.gameObject.GetComponent<Target>();
 
-            if(target != null)
+            if(collision.gameObject.tag == "Target")
             {
+                ScoreScript.scoreValue += 10;
+                Target target = collision.gameObject.GetComponent<Target>();
                 target.Hit();
+                Destroy(this.gameObject);
             }
-        }*/
+        }
     }
 }
